@@ -29,4 +29,16 @@ class FakultasController extends Controller
         $fakultas->delete();
         return redirect('/fakultas');
     }
+
+    public function edit($id){
+        $fakultas = Fakultas::findOrFail($id);
+        return view('Fakultas.edit', compact('fakultas'));
+    }
+
+    public function update($id, Request $request){
+        $fakultas = Fakultas::find($id);
+        $fakultas->nama_fakultas = $request->nama_fakultas;
+        $fakultas->save();
+        return redirect('/fakultas');
+    }
 }

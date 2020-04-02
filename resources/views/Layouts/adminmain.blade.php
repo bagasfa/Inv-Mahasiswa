@@ -62,7 +62,10 @@
           </div>
           <ul class="sidebar-menu">
               <li class="">
-                <a class="nav-link" href="fakultas"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+                <a class="nav-link" href="{{url('fakultas')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+              </li>
+              <li class="">
+                <a class="nav-link" href="{{url('jurusan')}}"><i class="far fa-circle"></i> <span>Jurusan</span></a>
               </li>
           </ul>
         </aside>

@@ -2,22 +2,22 @@
 
 @section('content')
 <script type="text/javascript">
-  document.title="Fakultas";
+  document.title="Jurusan";
   document.getElementById('barang').classList.add('active');
 </script>
 <section class="section">
   
   <div class="section-header">
-    <h1>Fakultas</h1>
+    <h1>Jurusan</h1>
   </div>
 
   <div class="section-body">
     <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <form method="GET" class="form-inline">
+            <form method="GET" action="{{url('jurusan/search')}}" class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->get('search') }}">
+                <input type="text" name="search" class="form-control" placeholder="Cari Fakultas">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Cari</button>
@@ -25,7 +25,7 @@
             </form>
           </div>
           <div class="card-header">
-            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Fakultas</button>
+            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah jurusan</button>
           </div>
 
           <div class="card-body">
@@ -34,19 +34,26 @@
                 <tr>
                   <th scope="col" width="100px"><center>#</center></th>
                   <th scope="col">Nama Fakultas</th>
+                  <th scope="col">Nama Jurusan</th>
                   <th scope="col"><center>Aksi</center></th>
                 </tr>
               </thead>
               <tbody>
-               @forelse($data as $key => $fakultas)
+                @forelse($data as $key => $jurusan)
                 <tr>
                   <td align="center">{{ $data->firstItem() + $key }}</td>
-                  <td>{{ $fakultas->nama_fakultas }}</td>
-                  <td align="center"><a href="{{url('fakultas/'.$fakultas->id. '/edit')}}">Edit</a> | <a href="{{url('fakultas/'.$fakultas->id. '/delete')}}">Hapus</a></td>
+                  <td>@foreach($fakultas as $f)
+                        @if($f->id == $jurusan->id_fakultas)
+                          {{ $f->nama_fakultas }}
+                        @endif
+                      @endforeach
+                  </td>
+                  <td>{{ $jurusan->nama_jurusan }}</td>
+                  <td align="center"><a href="{{url('jurusan/'.$jurusan->id. '/edit')}}">Edit</a> | <a href="{{url('jurusan/'.$jurusan->id. '/delete')}}">Hapus</a></td>
                 </tr>
-               @empty
+                @empty
                 <tr>
-                  <td colspan="3"><center>Data kosong</center></td>
+                  <td colspan="4"><center>Data kosong</center></td>
                 </tr>
                 @endforelse
               </tbody>
@@ -66,14 +73,22 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title" id="DataLabel">Tambah Data Fakultas</h5>
+            <h5 class="modal-title" id="DataLabel">Tambah Data Jurusan</h5>
           </div>
           <div class="modal-body">
-        <form action="{{url('/fakultas/add')}}" method="POST">
+        <form action="{{url('/jurusan/add')}}" method="POST">
         {{csrf_field()}}
         <div class="form-group">
-            <label for="inputNamaFakultas">Nama Fakultas <i style="color: red;">*</i></label>
-            <input name="nama_fakultas" type="text" class="form-control" id="inputNamaFakultas" placeholder="Nama Fakultas" required="">
+            <label for="inputFakultas">Nama Fakultas <i style="color: red;">*</i></label><br>
+            <select name="id_fakultas" class="form-control" required="">
+              @foreach($fakultas as $f)
+              <option value="{{$f->id}}">{{$f->nama_fakultas}}</option>
+              @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputNamaJurusan">Nama Jurusan <i style="color: red;">*</i></label>
+            <input name="nama_jurusan" type="text" class="form-control" id="inputNamaJurusan" placeholder="Nama Jurusan" required="">
         </div>
         <br>
         <span style="font-size: 12px;"><i style="color: red;"> * </i> : Data harus terisi</span>
