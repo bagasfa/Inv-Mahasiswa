@@ -2,22 +2,22 @@
 
 @section('content')
 <script type="text/javascript">
-  document.title="Jurusan";
-  document.getElementById('jurusan').classList.add('active');
+  document.title="Ruangan";
+  document.getElementById('ruangan').classList.add('active');
 </script>
 <section class="section">
   
   <div class="section-header">
-    <h1>Jurusan</h1>
+    <h1>Ruangan</h1>
   </div>
 
   <div class="section-body">
     <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="card-header">
-            <form method="GET" action="{{url('jurusan/search')}}" class="form-inline">
+            <form method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Cari Fakultas">
+                <input type="text" name="search" class="form-control" placeholder="Cari Ruangan" value="{{ request()->get('search') }}">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Cari</button>
@@ -25,7 +25,7 @@
             </form>
           </div>
           <div class="card-header">
-            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah jurusan</button>
+            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Ruangan</button>
           </div>
 
           <div class="card-body">
@@ -33,23 +33,18 @@
               <thead>
                 <tr>
                   <th scope="col" width="100px"><center>#</center></th>
-                  <th scope="col">Nama Fakultas</th>
                   <th scope="col">Nama Jurusan</th>
+                  <th scope="col">Nama Ruangan</th>
                   <th scope="col"><center>Aksi</center></th>
                 </tr>
               </thead>
               <tbody>
-                @forelse($data as $key => $jurusan)
+                @forelse($ruangan as $key => $r)
                 <tr>
-                  <td align="center">{{ $data->firstItem() + $key }}</td>
-                  <td>@foreach($fakultas as $f)
-                        @if($f->id == $jurusan->id_fakultas)
-                          {{ $f->nama_fakultas }}
-                        @endif
-                      @endforeach
-                  </td>
-                  <td>{{ $jurusan->nama_jurusan }}</td>
-                  <td align="center"><a href="{{url('jurusan/'.$jurusan->id. '/edit')}}">Edit</a> | <a href="{{url('jurusan/'.$jurusan->id. '/delete')}}">Hapus</a></td>
+                  <td align="center">{{ $ruangan->firstItem() + $key }}</td>
+                  <td>{{ $r->jurusan->nama_jurusan }}</td>
+                  <td>{{ $r->nama_ruangan }}</td>
+                  <td align="center"><a href="{{url('ruangan/'.$r->id. '/edit')}}">Edit</a> | <a href="{{url('ruangan/'.$r->id. '/delete')}}">Hapus</a></td>
                 </tr>
                 @empty
                 <tr>
@@ -58,7 +53,7 @@
                 @endforelse
               </tbody>
             </table>
-            <div class="pull-right">{{ $data->links() }}</div>
+            <div class="pull-right">{{ $ruangan->links() }}</div>
           </div>
           <div class="card-footer text-right">
             <nav class="d-inline-block">
@@ -73,22 +68,22 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content"> 
           <div class="modal-header">
-            <h5 class="modal-title" id="DataLabel">Tambah Data Jurusan</h5>
+            <h5 class="modal-title" id="DataLabel">Tambah Data Ruangan</h5>
           </div>
           <div class="modal-body">
-        <form action="{{url('/jurusan/add')}}" method="POST">
+        <form action="{{url('/ruangan/add')}}" method="POST">
         {{csrf_field()}}
         <div class="form-group">
-            <label for="inputFakultas">Nama Fakultas <i style="color: red;">*</i></label><br>
-            <select name="id_fakultas" class="form-control" required="">
-              @foreach($fakultas as $f)
-              <option value="{{$f->id}}">{{$f->nama_fakultas}}</option>
+            <label for="inputJurusan">Nama Jurusan <i style="color: red;">*</i></label><br>
+            <select name="id_jurusan" class="form-control" required="">
+              @foreach($jurusan as $j)
+              <option value="{{$j->id}}">{{$j->nama_jurusan}}</option>
               @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="inputNamaJurusan">Nama Jurusan <i style="color: red;">*</i></label>
-            <input name="nama_jurusan" type="text" class="form-control" id="inputNamaJurusan" placeholder="Nama Jurusan" required="">
+            <label for="inputRuangan">Nama Ruangan <i style="color: red;">*</i></label>
+            <input name="nama_ruangan" type="text" class="form-control" id="inputRuangan" placeholder="Nama Ruangan" required="">
         </div>
         <br>
         <span style="font-size: 12px;"><i style="color: red;"> * </i> : Data harus terisi</span>

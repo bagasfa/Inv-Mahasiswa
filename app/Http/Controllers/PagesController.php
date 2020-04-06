@@ -10,4 +10,8 @@ class PagesController extends Controller
     function landingPage(){
     	return view('Layouts.main');
     }
+
+    function dashboard(){
+    	return view('dashboard');
+    }
 }

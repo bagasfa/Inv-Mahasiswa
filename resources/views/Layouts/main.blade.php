@@ -45,7 +45,7 @@
                                     <p><span>+880166 253 232</span> <span>info@domain.com</span></p>
                                 </div>
                                 <div class="text_wrap">
-                                    <p><a href="{{url('fakultas')}}"> <i class="ti-user"></i>  Login</a> <a href="#">Register</a></p>
+                                    <p><a href="{{url('/login')}}"> <i class="ti-user"></i>  Login</a> <a href="#">Register</a></p>
                                 </div>
                             </div>
                         </div>

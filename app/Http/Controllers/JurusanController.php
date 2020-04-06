@@ -10,7 +10,6 @@ use App\Fakultas;
 
 class JurusanController extends Controller
 {
-    // Admin Panel
 
     public function search(Request $request){
     	$fakultas = Fakultas::all();

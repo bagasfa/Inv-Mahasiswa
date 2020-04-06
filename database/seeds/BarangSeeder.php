@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Fakultas;
 
-class FakultasSeeder extends Seeder
+class BarangSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class FakultasSeeder extends Seeder
      */
     public function run()
     {
-        Factory(App\Fakultas::class,16)->create();
+        Factory(App\Barang::class,5)->create();
     }
 }

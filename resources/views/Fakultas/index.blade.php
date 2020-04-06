@@ -3,7 +3,7 @@
 @section('content')
 <script type="text/javascript">
   document.title="Fakultas";
-  document.getElementById('barang').classList.add('active');
+  document.getElementById('fakultas').classList.add('active');
 </script>
 <section class="section">
   

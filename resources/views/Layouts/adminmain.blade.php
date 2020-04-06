@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title></title>
@@ -31,19 +32,13 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{auth()->user()->nama_user}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="features-activities.html" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
-              </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -61,12 +56,30 @@
             <a href="dashboard">UB</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="">
-                <a class="nav-link" href="{{url('fakultas')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+            @if(auth()->user()->role == "admin")
+              <li id="dashboard" class="">
+                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Dashboard</span></a>
               </li>
-              <li class="">
-                <a class="nav-link" href="{{url('jurusan')}}"><i class="far fa-circle"></i> <span>Jurusan</span></a>
+              <li id="fakultas" class="">
+                <a class="nav-link" href="{{url('/fakultas')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
               </li>
+              <li id="jurusan" class="">
+                <a class="nav-link" href="{{url('/jurusan')}}"><i class="far fa-circle"></i> <span>Jurusan</span></a>
+              </li>
+              <li id="ruangan" class="">
+                <a class="nav-link" href="{{url('/ruangan')}}"><i class="far fa-circle"></i> <span>Ruangan</span></a>
+              </li>
+              <li id="barang" class="">
+                <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-circle"></i> <span>Barang</span></a>
+              </li>
+            @elseif(auth()->user()->role == "staff")
+              <li id="dashboard" class="">
+                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+              </li>
+              <li id="barang" class="">
+                  <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-circle"></i> <span>Barang</span></a>
+                </li>
+            @endif
           </ul>
         </aside>
       </div>
