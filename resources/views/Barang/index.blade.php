@@ -24,14 +24,11 @@
               </div>
             </form>
           </div>
+          @if(auth()->user()->role == "admin")
           <div class="card-header">
-            @if(auth()->user()->role == "admin")
             <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Barang</button>
-            @elseif(auth()->user()->role == "staff")
-            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary" disabled=""><i class="fa fa-plus"></i> Tambah Barang</button>
-            @endif
           </div>
-
+          @endif
           <div class="card-body">
             <table class="table table-bordered">
               <thead>
@@ -66,7 +63,8 @@
                         @endif
                       @endforeach
                   </td>
-                  <td align="center"><a href="{{url('barang/'.$b->id. '/edit')}}">Edit</a> | <a href="{{url('barang/'.$b->id. '/delete')}}">Hapus</a></td>
+                  <td align="center"><a href="{{url('barang/'.$b->id. '/edit')}}">Edit</a>
+                    @if(auth()->user()->role == "admin") | <a href="{{url('barang/'.$b->id. '/delete')}}">Hapus</a> @endif</td>
                 </tr>
                 @empty
                 <tr>
