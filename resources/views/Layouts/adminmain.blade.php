@@ -74,7 +74,7 @@
               </li>
             @elseif(auth()->user()->role == "staff")
               <li id="dashboard" class="">
-                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Dashboard</span></a>
               </li>
               <li id="barang" class="">
                   <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-circle"></i> <span>Barang</span></a>
