@@ -17,7 +17,7 @@ class AuthController extends Controller
     		return redirect('/dashboard');
     	}
     	// Message salah
-    	return redirect('/login')->with('errors', 'Username atau Password anda Salah!');
+    	return redirect('/login')->with('errors', 'Email atau Password anda Salah!');
     }
 
     public function logout(){
