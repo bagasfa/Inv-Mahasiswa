@@ -28,8 +28,8 @@
             <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah jurusan</button>
           </div>
 
-          <div class="card-body">
-            <table class="table table-bordered">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th scope="col" width="100px"><center>#</center></th>
@@ -49,7 +49,19 @@
                       @endforeach
                   </td>
                   <td>{{ $jurusan->nama_jurusan }}</td>
-                  <td align="center"><a href="{{url('jurusan/'.$jurusan->id. '/edit')}}">Edit</a> | <a href="{{url('jurusan/'.$jurusan->id. '/delete')}}">Hapus</a></td>
+                  <td align="center">
+                    <a href="{{url('jurusan/'.$jurusan->id. '/edit')}}">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </a>
+                    &nbsp;
+                    <a href="{{url('jurusan/'.$jurusan->id. '/delete')}}">
+                      <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Hapus">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </a>
+                  </td>
                 </tr>
                 @empty
                 <tr>

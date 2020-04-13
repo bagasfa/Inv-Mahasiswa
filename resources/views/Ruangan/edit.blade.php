@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header">
             <a href="{{ url('/ruangan') }}"> 
-              <button type="button" class="btn btn-outline-info">
+              <button type="button" class="btn btn-outline-danger">
                 <i class="fas fa-arrow-circle-left"></i> Kembali
               </button>
           </a>

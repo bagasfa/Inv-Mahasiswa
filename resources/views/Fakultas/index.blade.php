@@ -17,7 +17,7 @@
           <div class="card-header">
             <form method="GET" class="form-inline">
               <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->get('search') }}">
+                <input type="text" name="search" class="form-control" placeholder="Cari Fakultas" value="{{ request()->get('search') }}">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Cari</button>
@@ -28,8 +28,8 @@
             <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Fakultas</button>
           </div>
 
-          <div class="card-body">
-            <table class="table table-bordered">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th scope="col" width="100px"><center>#</center></th>
@@ -42,7 +42,19 @@
                 <tr>
                   <td align="center">{{ $data->firstItem() + $key }}</td>
                   <td>{{ $fakultas->nama_fakultas }}</td>
-                  <td align="center"><a href="{{url('fakultas/'.$fakultas->id. '/edit')}}">Edit</a> | <a href="{{url('fakultas/'.$fakultas->id. '/delete')}}">Hapus</a></td>
+                  <td align="center">
+                    <a href="{{url('fakultas/'.$fakultas->id. '/edit')}}">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </a>
+                    &nbsp;
+                    <a href="{{url('fakultas/'.$fakultas->id. '/delete')}}">
+                      <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Hapus">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </a>
+                  </td>
                 </tr>
                @empty
                 <tr>

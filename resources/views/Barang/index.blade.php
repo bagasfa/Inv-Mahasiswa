@@ -29,8 +29,8 @@
             <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Barang</button>
           </div>
           @endif
-          <div class="card-body">
-            <table class="table table-bordered">
+          <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th scope="col" width="100px"><center>#</center></th>
@@ -63,8 +63,21 @@
                         @endif
                       @endforeach
                   </td>
-                  <td align="center"><a href="{{url('barang/'.$b->id. '/edit')}}">Edit</a>
-                    @if(auth()->user()->role == "admin") | <a href="{{url('barang/'.$b->id. '/delete')}}">Hapus</a> @endif</td>
+                  <td align="center">
+                    <a href="{{url('barang/'.$b->id. '/edit')}}">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </a>
+                  @if(auth()->user()->role == "admin")
+                    &nbsp;
+                    <a href="{{url('barang/'.$b->id. '/delete')}}">
+                      <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Hapus">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </a>
+                  @endif
+                </td>
                 </tr>
                 @empty
                 <tr>

@@ -50,10 +50,10 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="dashboard">Inventori UB</a>
+            <a href="/dashboard">Inventori UB</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="dashboard">UB</a>
+            <a href="/dashboard">UB</a>
           </div>
           <ul class="sidebar-menu">
             @if(auth()->user()->role == "admin")
@@ -109,8 +109,5 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="{{ asset('assets/js/page/index') }}.js"></script>
 </body>
 </html>
