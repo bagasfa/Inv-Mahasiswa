@@ -26,7 +26,10 @@
           </div>
           @if(auth()->user()->role == "admin")
           <div class="card-header">
-            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Barang</button>
+            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Barang</button>&nbsp;
+            <a href="{{url('/barang/exportXLSX')}}">
+              <button type="button" class="btn btn-success"><i class="fa fa-print"></i> Export Barang</button>
+            </a>
           </div>
           @endif
           <div class="card-body table-responsive">
