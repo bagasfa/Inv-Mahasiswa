@@ -11,8 +11,8 @@ use App\User;
 
 class BarangController extends Controller
 {
+    // Show Data + Search
     public function index(Request $request){
-
     	$barang = Barang::when($request->search, function($query) use($request){
             $query->where('nama_barang', 'LIKE', '%'.$request->search.'%');
         })->paginate(10);
@@ -22,6 +22,7 @@ class BarangController extends Controller
         return view('Barang.index', compact('ruangan', 'barang', 'user'));
     }
 
+    // Tambah Data
     public function add(Request $request){
     	$barang = new Barang;
     	$barang->id_ruangan = $request->id_ruangan;
@@ -30,21 +31,24 @@ class BarangController extends Controller
     	$barang->broken = $request->broken;
     	$barang->created_by = $request->created_by;
     	$barang->save();
-    	return redirect('/barang');
+    	return redirect('/barang')->with('message', 'Data Barang berhasil ditambahkan!');
     }
 
+    // Hapus Data
     public function delete($id){
         $barang = Barang::findOrFail($id);
         $barang->delete();
-        return redirect('/barang');
+        return redirect('/barang')->with('message', 'Data Barang berhasil dihapus!');
     }
 
+    // Menuju Halaman Edit
     public function edit($id){
         $barang = Barang::findOrFail($id);
         $ruangan = Ruangan::all();
         return view('Barang.edit', compact('ruangan', 'barang'));
     }
 
+    // Edit Data
     public function update($id, Request $request){
         $barang = Barang::findOrFail($id);
         $barang->id_ruangan = $request->id_ruangan;
@@ -54,10 +58,11 @@ class BarangController extends Controller
         $barang->created_by = $request->created_by;
         $barang->updated_by = $request->updated_by;
         $barang->save();
-        return redirect('/barang');
+        return redirect('/barang')->with('message', 'Data Barang berhasil diupdate!');
     }
 
+    // Export Data Ke Excel
     public function exportXLSX(){
-        return Excel::download(new BarangExport, 'Barang-'.date("d-m-Y").'.xlsx');
+        return Excel::download(new BarangExport, 'Barang-'.date("d-m-Y").'.xlsx')->with('message', 'Data Barang berhasil di-Export!');
     }
 }

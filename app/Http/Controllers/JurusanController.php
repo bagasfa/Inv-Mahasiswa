@@ -10,7 +10,7 @@ use App\Fakultas;
 
 class JurusanController extends Controller
 {
-
+    // Search dengan Parameter Nama Fakultas
     public function search(Request $request){
     	$fakultas = Fakultas::all();
         $search = $request->search;
@@ -27,6 +27,7 @@ class JurusanController extends Controller
         }
     }
 
+    // Show Data
     public function index(Request $request){
     	$data = Jurusan::paginate(10);
         $fakultas = Fakultas::all();
@@ -34,31 +35,35 @@ class JurusanController extends Controller
         return view('Jurusan.index', compact('data','fakultas'));
     }
 
+    // Tambah Data
     public function add(Request $request){
     	$jurusan = new Jurusan;
     	$jurusan->id_fakultas = $request->id_fakultas;
     	$jurusan->nama_jurusan = $request->nama_jurusan;
     	$jurusan->save();
-    	return redirect('/jurusan');
+    	return redirect('/jurusan')->with('message', 'Data Jurusan berhasil ditambahkan!');
     }
 
+    // Hapus Data
     public function delete($id){
         $jurusan = Jurusan::findOrFail($id);
         $jurusan->delete();
-        return redirect('/jurusan');
+        return redirect('/jurusan')->with('message', 'Data Jurusan berhasil dihapus!');
     }
 
+    // Menuju Halaman Edit Data
     public function edit($id){
         $jurusan = Jurusan::findOrFail($id);
         $fakultas = Fakultas::all();
         return view('Jurusan.edit', compact('jurusan','fakultas'));
     }
 
+    // Edit Data
     public function update($id, Request $request){
         $jurusan = Jurusan::find($id);
         $jurusan->id_fakultas = $request->id_fakultas;
         $jurusan->nama_jurusan = $request->nama_jurusan;
         $jurusan->save();
-        return redirect('/jurusan');
+        return redirect('/jurusan')->with('message', 'Data Jurusan berhasil diupdate!');
     }
 }

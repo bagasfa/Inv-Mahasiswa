@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
 
@@ -23,29 +23,39 @@
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
           <div class="p-4 m-3">
             <h4 class="text-dark font-weight-normal">UB Inventory <span class="font-weight-bold"></span></h4>
-            <p class="text-muted">Silahkan login untuk mengakses halaman admin panel.</p>
+            <p class="text-muted">Silahkan login untuk melakukan manajemen data.</p>
               @if(Session::has('errors'))
-                  <div style="background-color: red;" class="alert alert-info"> {{Session::get('errors')}} 
-                  </div> 
+                  <div class="alert alert-danger"> {{Session::get('errors')}} 
+                  </div>
+              @elseif(Session::has('message'))
+                  <div class="alert alert-success"> {{Session::get('message')}} 
+                  </div>
               @endif
             <form method="POST" action="{{ url('/postLogin') }}">
               {{csrf_field()}}
               <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail" tabindex="1" required autofocus>
               </div>
 
               <div class="form-group">
                 <div class="d-block">
                   <label for="password" class="control-label">Password</label>
                 </div>
-                <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                <div class="input-group" id="show_hide_password">
+                  <input name="password" type="password" minlength="8" class="form-control" tabindex="2" id="inputPassword" placeholder="Password" required="">
+                  <div class="input-group-addon eye">
+                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                  </div>
+                </div>
                 <div class="invalid-feedback">
                   please fill in your password
                 </div>
               </div>
-
               <div class="form-group text-right">
+                <div class="text-left">
+                  <p>Belum Punya Akun ? <a href="" data-toggle="modal" data-target="#formRegister">Daftar</a></p>
+                </div>
                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                   Masuk
                 </button>
@@ -71,6 +81,47 @@
     </section>
   </div>
 
+  <!-- Modal -->
+    <div class="modal fade" id="formRegister" tabindex="-1" role="dialog" aria-labelledby="formRegister" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"> 
+          <div class="modal-header">
+            <h5 class="modal-title" id="RegisterLabel">Form Registrasi</h5>
+          </div>
+          <div class="modal-body">
+        <form action="/register" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <div class="form-group">
+            <label for="inputNama">Nama Lengkap <i style="color: red;">*</i></label>
+            <input name="nama_user" type="text" class="form-control" id="inputNama" placeholder="Nama Lengkap" required="">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email <i style="color: red;">*</i></label>
+            <input name="email" type="email" class="form-control" id="inputEmail" placeholder="E-Mail" required="">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password <i style="color: red;">*</i></label>
+            <div class="input-group" id="show_hide_password">
+              <input name="password" type="password" minlength="8" class="form-control" id="inputPassword" placeholder="Password" required="">
+            <div class="input-group-addon eye">
+              <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+            </div>
+        </div>
+            <input type="hidden" name="role" value="staff">
+
+        <br>
+        <span style="font-size: 12px;"><i style="color: red;"> * </i> : Data harus terisi</span>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -82,6 +133,7 @@
   <!-- JS Libraies -->
 
   <!-- Template JS File -->
+  <script type="text/javascript" src="{{asset('assets/js/bootstrap-show-password.js')}}"></script>
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
 

@@ -10,11 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-	// Landing Page
-	Route::get('/', 'PagesController@landingPage');
 
 	// Authenticate
-	Route::get('/login', 'AuthController@index')->name('login');
+	Route::get('/', 'AuthController@index')->name('login');
 	Route::post('/postLogin','AuthController@postLogin');
 	Route::post('/register','AuthController@register');
 	Route::get('/logout','AuthController@logout');
@@ -43,6 +41,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function(){
 	Route::get('/ruangan/{id}/edit', 'RuanganController@edit');
 	Route::post('/ruangan/{id}/update', 'RuanganController@update');
 
+	// User
+	Route::get('/user', 'UserController@index');
+	Route::post('/user/add', 'UserController@add');
+	Route::get('/user/{id}/delete','UserController@delete');
+	Route::get('/user/{id}/edit', 'UserController@edit');
+	Route::post('/user/{id}/update', 'UserController@update');
+
 });
 
 	// Staff Panel
@@ -58,3 +63,5 @@ Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
 	Route::post('/barang/{id}/update', 'BarangController@update');
 	Route::get('/barang/exportXLSX','BarangController@exportXLSX');
 });
+
+?>
