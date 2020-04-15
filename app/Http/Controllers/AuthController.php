@@ -38,6 +38,6 @@ class AuthController extends Controller
     // Proses Logout
     public function logout(){
     	Auth::logout();
-    	return redirect('/');
+    	return redirect('/')->with('bye', 'Goodbye :(');
     }
 }
