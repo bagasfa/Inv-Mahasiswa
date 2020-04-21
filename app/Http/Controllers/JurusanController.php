@@ -37,6 +37,10 @@ class JurusanController extends Controller
 
     // Tambah Data
     public function add(Request $request){
+        $validateData = $request->validate([
+            'nama_jurusan' => 'required|unique:jurusan,nama_jurusan|max:255'
+        ]);
+
     	$jurusan = new Jurusan;
     	$jurusan->id_fakultas = $request->id_fakultas;
     	$jurusan->nama_jurusan = $request->nama_jurusan;
@@ -61,6 +65,10 @@ class JurusanController extends Controller
     // Edit Data
     public function update($id, Request $request){
         $jurusan = Jurusan::find($id);
+        $validateData = $request->validate([
+            'nama_jurusan' => 'required|unique:jurusan,nama_jurusan,'.$jurusan->id.'|max:255'
+        ]);
+
         $jurusan->id_fakultas = $request->id_fakultas;
         $jurusan->nama_jurusan = $request->nama_jurusan;
         $jurusan->save();

@@ -19,6 +19,7 @@ class CreateUser extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role',50)->default('admin');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

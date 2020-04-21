@@ -35,8 +35,9 @@
           <div class="card-body table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
-                <tr>
+                <tr align="center">
                   <th scope="col" width="100px"><center>#</center></th>
+                  <th scope="col">Foto Barang</th>
                   <th scope="col">Ruangan</th>
                   <th scope="col">Nama Barang</th>
                   <th scope="col">Total Barang</th>
@@ -50,10 +51,17 @@
                 @forelse($barang as $key => $b)
                 <tr>
                   <td align="center">{{ $barang->firstItem() + $key }}</td>
-                  <td>{{ $b->ruangan->nama_ruangan }}</td>
+                  <td style="padding-top: 10px; padding-bottom: 10px;" align="center">
+                    @if($b->foto == !NULL)
+                      <img src="{{url('uploads/barang/'.$b->foto)}}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                    @else
+                      <img src="{{ asset('assets/img/avatar/barang.png') }}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                    @endif
+                  </td>
+                  <td align="center">{{ $b->ruangan->nama_ruangan }}</td>
                   <td>{{ $b->nama_barang }}</td>
-                  <td>{{ $b->total }}</td>
-                  <td>{{ $b->broken }}</td>
+                  <td align="center">{{ $b->total }}</td>
+                  <td align="center">{{ $b->broken }}</td>
                   <td>@foreach($user as $u)
                         @if($u->id == $b->created_by)
                           {{ $u->nama_user }}
@@ -107,7 +115,7 @@
             <h5 class="modal-title" id="DataLabel">Tambah Data Barang</h5>
           </div>
           <div class="modal-body">
-        <form action="{{url('/barang/add')}}" method="POST">
+        <form action="{{url('/barang/add')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
             <label for="inputJurusan">Ruangan <i style="color: red;">*</i></label><br>
@@ -129,7 +137,20 @@
             <label for="inputBroken">Barang Rusak <i style="color: red;">*</i></label>
             <input name="broken" type="number" min="0" class="form-control" id="inputBroken" placeholder="Barang Rusak" required="">
         </div>
-            <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
+        <!-- Upload image input-->
+        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+          <input id="upload" type="file" name="foto" onchange="readURL(this);" class="form-control">
+          <label id="upload-label" for="upload" class="font-weight-light text-muted">Upload Foto disini ...</label>
+          <div class="input-group-append">
+            <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2"></i><small style="font-size: 12px;" class="text-bold">Pilih Foto</small></label>
+            </div>
+          </div>
+
+        <!-- Uploaded image area-->
+        <p class="font-italic text-center">Gambar preview akan ditampilkan dibawah</p>
+        <div class="image-area mt-4"><img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
+        <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
         <br>
         <span style="font-size: 12px;"><i style="color: red;"> * </i> : Data harus terisi</span>
 

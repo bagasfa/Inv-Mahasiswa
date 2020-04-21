@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
@@ -54,9 +54,9 @@
                 <div class="input-group" id="show_hide_password">
                   <input name="password" type="password" minlength="8" class="form-control" tabindex="2" id="inputPassword" placeholder="Password" required="">
                   <!-- Show Hide Password Component -->
-                  <div class="input-group-addon eye">
-                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                  </div>
+                  <a href=""><div class="input-group-addon eye">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </div></a>
                 </div>
                 <div class="invalid-feedback">
                   Harap Isi Password
@@ -119,10 +119,23 @@
               <label for="inputPassword">Password <i style="color: red;">*</i></label>
               <div class="input-group" id="show_hide_password">
                 <input name="password" type="password" minlength="8" class="form-control" id="inputPassword" placeholder="Password" required="">
-              <div class="input-group-addon eye">
-                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-              </div>
+              <a href=""><div class="input-group-addon eye">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+              </div></a>
             </div>
+
+            <!-- Upload image input-->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+              <input id="upload" type="file" name="foto" onchange="readURL(this);" class="form-control">
+              <label id="upload-label" for="upload" class="font-weight-light text-muted">Upload Foto disini ...</label>
+              <div class="input-group-append">
+                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2"></i><small style="font-size: 12px;" class="text-bold">Pilih Foto</small></label>
+                </div>
+              </div>
+
+            <!-- Uploaded image area-->
+            <p class="font-italic text-center">Gambar preview akan ditampilkan dibawah</p>
+            <div class="image-area mt-4"><img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
             <!-- Hidden Role -->
             <input type="hidden" name="role" value="staff">
             <br>

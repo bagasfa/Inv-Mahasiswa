@@ -15,11 +15,20 @@ class AuthController extends Controller
 
     // Registrasi User Baru Sebagai Staff
     public function register(Request $request){
+        $validateData = $request->validate([
+            'email' => 'required|unique:user,email',
+            'password' => 'required|min:8',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:8192'
+        ]);
+        $upFoto = 'user-'.date('dmYhis').'.'.$request->foto->getClientOriginalExtension();
+        $request->foto->move('uploads/user', $upFoto);
+        
         $user = new User;
         $user->nama_user = $request->nama_user;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->role = $request->role;
+        $user->foto = $upFoto;
         $user->save();
         return redirect('/')->with('message', 'Registrasi berhasil!');
     }

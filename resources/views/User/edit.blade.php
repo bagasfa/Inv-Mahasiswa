@@ -1,6 +1,10 @@
 @extends('layouts.adminmain')
 
 @section('content')
+<script type="text/javascript">
+  document.title="Edit User";
+  document.getElementById('user').classList.add('active');
+</script>
 <section class="section">
   
   <div class="section-header">
@@ -20,8 +24,8 @@
           </a>
           </div>
           <div class="card-body">
-            <form action="{{ url('/user/'.$user->id.'/update') }}" method="POST">
-              @csrf
+            <form action="{{ url('/user/'.$user->id.'/update') }}" method="POST" enctype="multipart/form-data">
+              {{csrf_field()}}
               <div class="form-group">
                 <label for="inputNama">Nama Lengkap</label>
                 <input name="nama_user" type="text" class="form-control" id="inputNama" value="{{$user->nama_user}}" required="">
@@ -34,9 +38,9 @@
                   <label for="inputPassword">Password <i style="color: red;">*</i></label>
                   <div class="input-group" id="show_hide_password">
                     <input name="password" type="password" minlength="8" class="form-control" id="inputPassword" value="{{$user->password}}" required="">
-                  <div class="input-group-addon eye">
-                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                  </div>
+                  <a href=""><div class="input-group-addon eye">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </div></a>
               </div>
               <div class="form-group">
                   <label for="inputRole">Role</label>
@@ -49,6 +53,24 @@
                       <option value="{{ $user->role }}" selected="">Staff</option>
                     @endif
                   </select>
+              </div>
+              <!-- Upload image input-->
+              <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                <input id="upload" type="file" name="foto" onchange="readURL(this);" class="form-control">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Upload Foto disini ...</label>
+                <div class="input-group-append">
+                  <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2"></i><small style="font-size: 12px;" class="text-bold">Pilih Foto</small></label>
+                  </div>
+                </div>
+
+              <!-- Uploaded image area-->
+              <p class="font-italic text-center">Gambar preview akan ditampilkan dibawah</p>
+              <div class="image-area mt-4">
+                @if($user->foto == NULL)
+                  <img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                @else
+                  <img id="imageResult" src="{{url('uploads/user/'.$user->foto)}}" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                @endif
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">SIMPAN</button>

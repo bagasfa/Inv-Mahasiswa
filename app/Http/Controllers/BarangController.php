@@ -24,11 +24,22 @@ class BarangController extends Controller
 
     // Tambah Data
     public function add(Request $request){
+        $validateData = $request->validate([
+            'id_ruangan' => 'required',
+            'nama_barang' => 'required|max:255',
+            'total' => 'required',
+            'broken' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:8192'
+        ]);
+        $upFoto = 'barang-'.date('dmYhis').'.'.$request->foto->getClientOriginalExtension();
+        $request->foto->move('uploads/barang', $upFoto);
+
     	$barang = new Barang;
     	$barang->id_ruangan = $request->id_ruangan;
     	$barang->nama_barang = $request->nama_barang;
     	$barang->total = $request->total;
     	$barang->broken = $request->broken;
+        $barang->foto = $upFoto;
     	$barang->created_by = $request->created_by;
     	$barang->save();
     	return redirect('/barang')->with('message', 'Data Barang berhasil ditambahkan!');
@@ -36,6 +47,8 @@ class BarangController extends Controller
 
     // Hapus Data
     public function delete($id){
+        $image = Barang::where('id', $id)->first();
+        File::delete('uploads/barang/'.$image->foto);
         $barang = Barang::findOrFail($id);
         $barang->delete();
         return redirect('/barang')->with('message', 'Data Barang berhasil dihapus!');
@@ -50,11 +63,25 @@ class BarangController extends Controller
 
     // Edit Data
     public function update($id, Request $request){
+        $validateData = $request->validate([
+            'id_ruangan' => 'required',
+            'nama_barang' => 'required|max:255',
+            'total' => 'required',
+            'broken' => 'required',
+            'foto' => 'image|mimes:jpeg,png,jpg|max:8192'
+        ]);
+
         $barang = Barang::findOrFail($id);
         $barang->id_ruangan = $request->id_ruangan;
         $barang->nama_barang = $request->nama_barang;
         $barang->total = $request->total;
         $barang->broken = $request->broken;
+        if( $request->foto){
+            $upFoto = 'barang-'.date('dmYhis').'.'.$request->foto->getClientOriginalExtension();
+            $request->foto->move('uploads/barang', $upFoto);
+            $barang->foto = $upFoto;
+        }
+
         $barang->created_by = $request->created_by;
         $barang->updated_by = $request->updated_by;
         $barang->save();

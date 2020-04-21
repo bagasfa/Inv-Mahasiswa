@@ -11,10 +11,11 @@
 
   <!-- Online CSS Files -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <!-- Offline CSS -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
@@ -33,7 +34,11 @@
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            @if(auth()->user()->foto == !NULL)
+              <img alt="image" src="{{url('uploads/user/'.auth()->user()->foto)}}" class="rounded-circle mr-1">
+            @else
+              <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            @endif
             <div class="d-sm-none d-lg-inline-block">Hai, {{auth()->user()->nama_user}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="{{url('/profile')}}" class="dropdown-item has-icon">
@@ -52,41 +57,41 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="/dashboard">Inventori UB</a>
+            <a href="{{url('dashboard')}}"><img src="{{asset('assets/img/ub.png')}}" width="30px"> Inventori UB</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/dashboard">UB</a>
+            <a href="{{url('dashboard')}}"><img src="{{asset('assets/img/ub.png')}}" width="30px"></a>
           </div>
           <ul class="sidebar-menu">
 
             <!-- List Menu Sebagai Admin -->
             @if(auth()->user()->role == "admin")
               <li id="dashboard" class="">
-                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Dashboard</span></a>
+                <a class="nav-link" href="{{url('/dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
               </li>
               <li id="fakultas" class="">
-                <a class="nav-link" href="{{url('/fakultas')}}"><i class="far fa-circle"></i> <span>Fakultas</span></a>
+                <a class="nav-link" href="{{url('/fakultas')}}"><i class="fas fa-university"></i> <span>Fakultas</span></a>
               </li>
               <li id="jurusan" class="">
-                <a class="nav-link" href="{{url('/jurusan')}}"><i class="far fa-circle"></i> <span>Jurusan</span></a>
+                <a class="nav-link" href="{{url('/jurusan')}}"><i class="fas fa-graduation-cap"></i> <span>Jurusan</span></a>
               </li>
               <li id="ruangan" class="">
-                <a class="nav-link" href="{{url('/ruangan')}}"><i class="far fa-circle"></i> <span>Ruangan</span></a>
+                <a class="nav-link" href="{{url('/ruangan')}}"><i class="fas fa-door-open"></i> <span>Ruangan</span></a>
               </li>
               <li id="barang" class="">
-                <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-circle"></i> <span>Barang</span></a>
+                <a class="nav-link" href="{{url('/barang')}}"><i class="fas fa-cubes"></i> <span>Barang</span></a>
               </li>
               <li id="user" class="">
-                <a class="nav-link" href="{{url('/user')}}"><i class="far fa-circle"></i> <span>User</span></a>
+                <a class="nav-link" href="{{url('/user')}}"><i class="fas fa-users"></i> <span>Users</span></a>
               </li>
 
             <!-- List Menu Sebagai Staff  -->
             @elseif(auth()->user()->role == "staff")
               <li id="dashboard" class="">
-                <a class="nav-link" href="{{url('/dashboard')}}"><i class="far fa-circle"></i> <span>Dashboard</span></a>
+                <a class="nav-link" href="{{url('/dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
               </li>
               <li id="barang" class="">
-                  <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-circle"></i> <span>Barang</span></a>
+                  <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-cubes"></i> <span>Barang</span></a>
                 </li>
             @endif
 
@@ -113,6 +118,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://use.fontawesome.com/7d44cdf850.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" ></script>
 
 
   <!-- Offline JS File -->
@@ -161,6 +168,15 @@
   <script>
     @if(Session::has('message'))
       toastr.success("{{ Session::get('message') }}");
+    @endif
+  </script>
+
+  <!-- Toastr Validation -->
+  <script>
+    @if($errors->any())
+      @foreach($errors->all() as $error)
+        toastr.error("{{ $error }}");
+      @endforeach
     @endif
   </script>
 

@@ -19,6 +19,10 @@ class FakultasController extends Controller
 
     // Tambah Data
     public function add(Request $request){
+        $validateData = $request->validate([
+            'nama_fakultas' => 'required|unique:fakultas,nama_fakultas|max:255'
+        ]);
+
     	$fakultas = new Fakultas;
     	$fakultas->nama_fakultas = $request->nama_fakultas;
     	$fakultas->save();
@@ -41,6 +45,10 @@ class FakultasController extends Controller
     // Edit Data
     public function update($id, Request $request){
         $fakultas = Fakultas::find($id);
+        $validateData = $request->validate([
+            'nama_fakultas' => 'required|unique:fakultas,nama_fakultas,'.$fakultas->id.'|max:255'
+        ]);
+        
         $fakultas->nama_fakultas = $request->nama_fakultas;
         $fakultas->save();
         return redirect('/fakultas')->with('message', 'Data Fakultas berhasil diupdate!');

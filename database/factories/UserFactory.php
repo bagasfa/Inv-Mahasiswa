@@ -25,10 +25,16 @@ $factory->define(User::class, function (Faker $faker) {
         	'staff'
         ];
 
+    $list_foto = [
+            'example.jpg',
+            'example2.jpg',
+    ];
+
     return [
         'nama_user' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('password'), // password
-        'role' => $faker->unique()->randomElement($listRole)
+        'role' => $faker->unique()->randomElement($listRole),
+        'foto' => $faker->randomElement($list_foto)
     ];
 });

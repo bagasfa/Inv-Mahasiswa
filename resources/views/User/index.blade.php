@@ -31,8 +31,9 @@
           <div class="card-body table-responsive">
             <table class="table table-bordered table-hover">
               <thead>
-                <tr>
+                <tr align="center">
                   <th scope="col" width="100px"><center>#</center></th>
+                  <th scope="col">Foto</th>
                   <th scope="col">Nama User</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Password</th>
@@ -44,10 +45,17 @@
                 @forelse($user as $key => $u)
                 <tr>
                   <td align="center">{{ $user->firstItem() + $key }}</td>
+                  <td style="padding-top: 10px; padding-bottom: 10px;" align="center">
+                    @if($u->foto == !NULL)
+                      <img src="{{url('uploads/user/'.$u->foto)}}" class="rounded-circle mr-1" width="100px" height="100px">
+                    @else
+                      <img src="{{ asset('assets/img/avatar/avatar-3.png') }}" class="rounded-circle mr-1" width="100px" height="100px">
+                    @endif
+                  </td>
                   <td>{{ $u->nama_user }}</td>
                   <td>{{ $u->email }}</td>
-                  <td>Ter-Enkripsi</td>
-                  <td>{{ $u->role }}</td>
+                  <td align="center">Ter-Enkripsi</td>
+                  <td align="center">{{ $u->role }}</td>
                   <td align="center">
                     <a href="{{url('user/'.$u->id. '/edit')}}">
                       <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" title="Edit">
@@ -87,7 +95,7 @@
             <h5 class="modal-title" id="DataLabel">Tambah User</h5>
           </div>
           <div class="modal-body">
-        <form action="{{url('/user/add')}}" method="POST">
+        <form action="{{url('/user/add')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="form-group">
             <label for="inputNama">Nama Lengkap <i style="color: red;">*</i></label>
@@ -101,9 +109,9 @@
             <label for="inputPassword">Password <i style="color: red;">*</i></label>
             <div class="input-group" id="show_hide_password">
               <input name="password" type="password" minlength="8" class="form-control" id="inputPassword" placeholder="Password" required="">
-            <div class="input-group-addon eye">
-              <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-            </div>
+            <a href=""><div class="input-group-addon eye">
+              <i class="fa fa-eye-slash" aria-hidden="true"></i>
+            </div></a>
         </div>
         <div class="form-group">
             <label for="inputRole">Role <i style="color: red;">*</i></label>
@@ -112,6 +120,19 @@
                 <option value="staff">Staff</option>
             </select>
         </div>
+        <!-- Upload image input-->
+        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+          <input id="upload" type="file" name="foto" onchange="readURL(this);" class="form-control">
+          <label id="upload-label" for="upload" class="font-weight-light text-muted">Upload Foto disini ...</label>
+          <div class="input-group-append">
+            <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2"></i><small style="font-size: 12px;" class="text-bold">Pilih Foto</small></label>
+            </div>
+          </div>
+
+        <!-- Uploaded image area-->
+        <p class="font-italic text-center">Gambar preview akan ditampilkan dibawah</p>
+        <div class="image-area mt-4"><img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
         <br>
         <span style="font-size: 12px;"><i style="color: red;"> * </i> : Data harus terisi</span>
 

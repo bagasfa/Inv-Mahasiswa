@@ -21,6 +21,10 @@ class RuanganController extends Controller
 
     // Tambah Data
     public function add(Request $request){
+        $validateData = $request->validate([
+            'nama_ruangan' => 'required|unique:ruangan,nama_ruangan|max:255'
+        ]);
+
     	$ruangan = new Ruangan;
     	$ruangan->id_jurusan = $request->id_jurusan;
     	$ruangan->nama_ruangan = $request->nama_ruangan;
@@ -45,6 +49,10 @@ class RuanganController extends Controller
     // Edit Data
     public function update($id, Request $request){
         $ruangan = Ruangan::findOrFail($id);
+        $validateData = $request->validate([
+            'nama_ruangan' => 'required|unique:ruangan,nama_ruangan,'.$ruangan->id.'|max:255'
+        ]);
+
         $ruangan->id_jurusan = $request->id_jurusan;
         $ruangan->nama_ruangan = $request->nama_ruangan;
         $ruangan->save();
