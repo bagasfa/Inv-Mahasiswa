@@ -1,6 +1,10 @@
 @extends('layouts.adminmain')
 
 @section('content')
+<script type="text/javascript">
+  document.title="Edit Ruangan";
+  document.getElementById('ruangan').classList.add('active');
+</script>
 <section class="section">
   
   <div class="section-header">
