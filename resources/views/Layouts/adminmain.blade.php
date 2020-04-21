@@ -41,8 +41,8 @@
             @endif
             <div class="d-sm-none d-lg-inline-block">Hai, {{auth()->user()->nama_user}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="{{url('/profile')}}" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
+              <a class="dropdown-item has-icon">
+                <i class="fas fa-envelope" style="padding-top: 1px;"></i> {{auth()->user()->email}}
               </a>
               <div class="dropdown-divider"></div>
               <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
@@ -91,8 +91,8 @@
                 <a class="nav-link" href="{{url('/dashboard')}}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
               </li>
               <li id="barang" class="">
-                  <a class="nav-link" href="{{url('/barang')}}"><i class="far fa-cubes"></i> <span>Barang</span></a>
-                </li>
+                <a class="nav-link" href="{{url('/barang')}}"><i class="fas fa-cubes"></i> <span>Barang</span></a>
+              </li>
             @endif
 
           </ul>
@@ -125,7 +125,7 @@
   <!-- Offline JS File -->
   <script type="text/javascript" src="{{asset('assets/js/bootstrap-show-password.js')}}"></script>
   <script src="{{asset('js/toastr.min.js')}}"></script>
-  <script src="{{asset('js/bootstrap.js')}}"></script>
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
@@ -168,6 +168,8 @@
   <script>
     @if(Session::has('message'))
       toastr.success("{{ Session::get('message') }}");
+    @elseif(Session::has('error'))
+      toastr.error("{{ Session::get('error') }}");
     @endif
   </script>
 

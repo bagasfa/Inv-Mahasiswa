@@ -61,15 +61,20 @@ class UserController extends Controller
 
         $user->nama_user = $request->nama_user;
     	$user->email = $request->email;
-    	$user->password = bcrypt($request->password);
-    	$user->role = $request->role;
+        $user->role = $request->role;
         if( $request->foto){
             $upFoto = 'user-'.date('dmYhis').'.'.$request->foto->getClientOriginalExtension();
             $request->foto->move('uploads/user', $upFoto);
             $user->foto = $upFoto;
         }
 
-        $user->save();
-        return redirect('/user')->with('message', 'Data User berhasil diupdate!');
+        if($request->password == $user->password){
+            $user->save();
+            return redirect('/user')->with('error', 'Tidak ada perubahan pada Password!');
+        }else{
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return redirect('/user')->with('message', 'Data berhasil diubah!');
+        }
     }
 }
