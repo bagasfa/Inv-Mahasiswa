@@ -14,7 +14,7 @@
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
 
@@ -26,17 +26,11 @@
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
           <div class="p-4 m-3">
             <!-- Judul Form -->
-            <h4 class="text-dark font-weight-normal">UB Inventory <span class="font-weight-bold"></span></h4>
+            <a href="{{url('/')}}">
+                <center><img src="{{asset('assets/img/logo.png')}}" alt="UB Inventori"></center>
+            </a>
             <!-- Sub Judul -->
-            <p class="text-muted">Silahkan login untuk melakukan manajemen data.</p>
-            <!-- Alert Message -->
-              @if(Session::has('errors'))
-                  <div class="alert alert-danger"> {{Session::get('errors')}} 
-                  </div>
-              @elseif(Session::has('message'))
-                  <div class="alert alert-success"> {{Session::get('message')}} 
-                  </div>
-              @endif
+            <p class="text-muted" align="center">Silahkan login untuk melakukan manajemen data.</p>
 
               <!-- Form Login -->
             <form method="POST" action="{{ url('/postLogin') }}">
@@ -168,7 +162,9 @@
 
   <!-- Toaster -->
   <script>
-    @if(Session::has('bye'))
+    @if(Session::has('message'))
+      toastr.success("{{ Session::get('message') }}");
+    @elseif(Session::has('bye'))
       toastr.error("{{ Session::get('bye') }}");
     @endif
   </script>

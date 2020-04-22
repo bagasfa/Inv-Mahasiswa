@@ -16,7 +16,7 @@
   <!-- Offline CSS -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
 

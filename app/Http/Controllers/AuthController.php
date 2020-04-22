@@ -30,7 +30,7 @@ class AuthController extends Controller
         $user->role = $request->role;
         $user->foto = $upFoto;
         $user->save();
-        return redirect('/')->with('message', 'Registrasi berhasil!');
+        return redirect('/login')->with('message', 'Registrasi berhasil!');
     }
 
     // Proses Login
@@ -41,12 +41,12 @@ class AuthController extends Controller
     		return redirect('/dashboard')->with('message', 'Welcome :)');
     	}
     	// Email atau Password salah
-    	return redirect('/')->with('errors', 'Email atau Password anda Salah!');
+    	return redirect('/login')->with('bye', 'Email atau Password anda Salah!');
     }
 
     // Proses Logout
     public function logout(){
     	Auth::logout();
-    	return redirect('/')->with('bye', 'Goodbye :(');
+    	return redirect('/login')->with('bye', 'Goodbye :(');
     }
 }

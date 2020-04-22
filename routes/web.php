@@ -10,12 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+	
+	Route::get('/','PagesController@index');
 
 	// Authenticate
-	Route::get('/', 'AuthController@index')->name('login');
+	Route::get('/login', 'AuthController@index')->name('login');
 	Route::post('/postLogin','AuthController@postLogin');
 	Route::post('/register','AuthController@register');
 	Route::get('/logout','AuthController@logout');
+
 
 	// Admin Panel
 Route::group(['middleware' => ['auth','checkRole:admin']], function(){
