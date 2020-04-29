@@ -80,10 +80,15 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
   font-size: 30px;
  }
 
+ #micon2{
+  font-size: 30px;
+  padding-right: 50px;
+ }
+
 #clock{
   color: #32364a;
   font-size: 50px;
-  padding-top: 10%;
+  padding-top: 3%;
 }
 
 #shadow{

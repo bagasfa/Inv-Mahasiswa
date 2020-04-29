@@ -25,33 +25,13 @@
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/slicknav.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
     <!-- header-start -->
     <header>
         <div class="header-area ">
-            <div class="header-top_area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="header_top_wrap d-flex justify-content-between align-items-center">
-                                <div class="text_wrap">
-                                    <p><span>+880166 253 232</span> <span>info@domain.com</span></p>
-                                </div>
-                                <div class="text_wrap">
-                                    <p><a href="{{url('/login')}}"> <i class="ti-user"></i>  Login</a> <a href="#">Register</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid">
                     <div class="row">
@@ -68,29 +48,15 @@
                                     <div class="main-menu  d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a  href="index.html">home</a></li>
-                                                <li><a href="Courses.html">Courses</a></li>
-                                                <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                    <ul class="submenu">
-                                                        <li><a href="blog.html">blog</a></li>
-                                                        <li><a href="single-blog.html">single-blog</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                    <ul class="submenu">
-                                                        <li><a href="Event.html">Event</a></li>
-                                                        <li><a href="event_details.html">Event Details</a></li>
-                                                        <li><a href="Admissions.html">Admissions</a></li>
-                                                        <li><a href="elements.html">elements</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a data-scroll-nav='1' href="#">Home</a></li>
+                                                <li><a data-scroll-nav='2' href="#">Fakultas</a></li>
+                                                <li><a data-scroll-nav='3' href="#">Fasilitas Ruangan</a>
                                             </ul>
                                         </nav>
                                     </div>
                                     <div class="Appointment">
                                         <div class="book_btn d-none d-lg-block">
-                                            <a data-scroll-nav='1' href="#">Apply NOw</a>
+                                            <a href="{{url('/login')}}">Masuk</a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +73,7 @@
     <!-- header-end -->
 
     <!-- slider_area_start -->
-    <div class="slider_area">
+    <div data-scroll-index='1' class="slider_area">
         <div class="slider_active owl-carousel">
             <!-- single_carouse -->
             <div class="single_slider  d-flex align-items-center slider_bg_1">
@@ -207,7 +173,7 @@
     <!--/ service_area_start  -->
 
     <!-- popular_program_area_start  -->
-    <div class="popular_program_area section__padding">
+    <div data-scroll-nav='2' class="popular_program_area section__padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -220,10 +186,22 @@
                 <div class="col-lg-12">
                     <nav class="custom_tabs text-center">
                         <div class="nav" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Graduate</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Postgraduate</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">PHD Scholarships</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact" aria-selected="false">Training</a>
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                            @foreach($fakultas->where('id',2) as $f)
+                                {{ $f->nama_fakultas }}
+                            @endforeach</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            @foreach($fakultas->where('id',3) as $f)
+                                {{ $f->nama_fakultas }}
+                            @endforeach</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                            @foreach($fakultas->where('id',12) as $f)
+                                {{ $f->nama_fakultas }}
+                            @endforeach</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact" aria-selected="false">
+                            @foreach($fakultas->where('id',14) as $f)
+                                {{ $f->nama_fakultas }}
+                            @endforeach</a>
                         </div>
                     </nav>
                 </div>
@@ -231,174 +209,86 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row">
+                        @foreach($jurusan->where('id_fakultas','2') as $j)
                         <div class="col-lg-4 col-md-6">
                             <div class="single__program">
                                 <div class="program_thumb">
                                     <img src="{{asset('assets/img/program/1.png')}}" alt="">
                                 </div>
                                 <div class="program__content">
-                                    <span>Agriculture</span>
-                                    <h4>Chemical engneering</h4>
+                                    <span>@foreach($fakultas->where('id',2) as $f)
+                                        {{ $f->nama_fakultas }}
+                                    @endforeach</span>
+                                    <h4>{{$j->nama_jurusan}}</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                                     <a href="#" class="boxed-btn5">Apply NOw</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single__program">
-                                <div class="program_thumb">
-                                    <img src="{{asset('assets/img/program/2.png')}}" alt="">
-                                </div>
-                                <div class="program__content">
-                                    <span>Agriculture</span>
-                                    <h4>Mechanical engneering</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                    <a href="#" class="boxed-btn5">Apply NOw</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single__program">
-                                <div class="program_thumb">
-                                    <img src="{{asset('assets/img/program/3.png')}}" alt="">
-                                </div>
-                                <div class="program__content">
-                                    <span>Agriculture</span>
-                                    <h4>Bio engneering</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                    <a href="#" class="boxed-btn5">Apply NOw</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/1.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Chemical engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row">
+                            @foreach($jurusan->where('id_fakultas','3') as $j)
                             <div class="col-lg-4 col-md-6">
                                 <div class="single__program">
                                     <div class="program_thumb">
                                         <img src="{{asset('assets/img/program/3.png')}}" alt="">
                                     </div>
                                     <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Mechanical engneering</h4>
+                                        <span>@foreach($fakultas->where('id',3) as $f)
+                                            {{ $f->nama_fakultas }}
+                                        @endforeach</span>
+                                        <h4>{{$j->nama_jurusan}}</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                                         <a href="#" class="boxed-btn5">Apply NOw</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/2.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Bio engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                 </div>
                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/3.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Chemical engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row">
+                            @foreach($jurusan->where('id_fakultas','12') as $j)
                             <div class="col-lg-4 col-md-6">
                                 <div class="single__program">
                                     <div class="program_thumb">
                                         <img src="{{asset('assets/img/program/2.png')}}" alt="">
                                     </div>
                                     <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Mechanical engneering</h4>
+                                        <span>@foreach($fakultas->where('id',12) as $f)
+                                            {{ $f->nama_fakultas }}
+                                        @endforeach</span>
+                                        <h4>{{$j->nama_jurusan}}</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                                         <a href="#" class="boxed-btn5">Apply NOw</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/1.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Bio engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                 </div>
                 <div class="tab-pane fade" id="nav-contact2" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/2.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Chemical engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single__program">
-                                    <div class="program_thumb">
-                                        <img src="{{asset('assets/img/program/1.png')}}" alt="">
-                                    </div>
-                                    <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Mechanical engneering</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                        <a href="#" class="boxed-btn5">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row">
+                            @foreach($jurusan->where('id_fakultas','14') as $j)
                             <div class="col-lg-4 col-md-6">
                                 <div class="single__program">
                                     <div class="program_thumb">
                                         <img src="{{asset('assets/img/program/3.png')}}" alt="">
                                     </div>
                                     <div class="program__content">
-                                        <span>Agriculture</span>
-                                        <h4>Bio engneering</h4>
+                                        <span>@foreach($fakultas->where('id',14) as $f)
+                                            {{ $f->nama_fakultas }}
+                                        @endforeach</span>
+                                        <h4>{{$j->nama_jurusan}}</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
                                         <a href="#" class="boxed-btn5">Apply NOw</a>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                 </div>
             </div>
@@ -415,7 +305,7 @@
     <!-- popular_program_area_end -->
 
     <!-- latest_coures_area_start  -->
-    <div class="latest_coures_area">
+    <div data-scroll-nav='3' class="latest_coures_area">
         <div class="latest_coures_inner">
             <div class="container">
                 <div class="row">
@@ -509,7 +399,7 @@
     <!-- recent_event_area_end  -->
 
     <!-- latest_coures_area_start  -->
-    <div data-scroll-index='1' class="admission_area">
+    <div class="admission_area">
         <div class="admission_inner">
             <div class="container">
                 <div class="row justify-content-end">

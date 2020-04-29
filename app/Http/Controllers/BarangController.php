@@ -90,6 +90,6 @@ class BarangController extends Controller
 
     // Export Data Ke Excel
     public function exportXLSX(){
-        return Excel::download(new BarangExport, 'Barang-'.date("d-m-Y").'.xlsx')->with('message', 'Data Barang berhasil di-Export!');
+        return Excel::download(new BarangExport, 'Barang-'.date("d-m-Y").'.xlsx');
     }
 }
