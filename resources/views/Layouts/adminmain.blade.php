@@ -14,8 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <!-- Offline CSS -->
-  <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
-  <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/fancybox/jquery.fancybox.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
@@ -126,9 +127,17 @@
   <script type="text/javascript" src="{{asset('assets/js/bootstrap-show-password.js')}}"></script>
   <script src="{{asset('js/toastr.min.js')}}"></script>
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('assets/fancybox/jquery.fancybox.js') }}"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+  <!-- action Zooming gambar -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".zoom").fancybox();
+    });
+  </script>
 
   <!-- Jam -->
   <script type="text/javascript">

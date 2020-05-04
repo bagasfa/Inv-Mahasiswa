@@ -59,7 +59,9 @@
               <p class="font-italic text-center">Gambar preview akan ditampilkan dibawah</p>
               <div class="image-area mt-4">
                 @if($barang->foto == !NULL)
-                  <img id="imageResult" src="{{url('uploads/barang/'.$barang->foto)}}" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                  <a href="{{url('uploads/barang/'.$barang->foto)}}" class="zoom">
+                    <img id="imageResult" src="{{url('uploads/barang/'.$barang->foto)}}" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                  </a>
                 @else
                   <img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
                 @endif

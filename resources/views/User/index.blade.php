@@ -47,9 +47,13 @@
                   <td align="center">{{ $user->firstItem() + $key }}</td>
                   <td style="padding-top: 10px; padding-bottom: 10px;" align="center">
                     @if($u->foto == !NULL)
-                      <img src="{{url('uploads/user/'.$u->foto)}}" class="rounded-circle mr-1" width="100px" height="100px">
+                      <a href="{{url('uploads/user/'.$u->foto)}}" class="zoom">
+                        <img src="{{url('uploads/user/'.$u->foto)}}" class="rounded-circle mr-1" width="100px" height="100px">
+                      </a>
                     @else
-                      <img src="{{ asset('assets/img/avatar/avatar-3.png') }}" class="rounded-circle mr-1" width="100px" height="100px">
+                      <a href="{{ asset('assets/img/avatar/avatar-3.png') }}" class="zoom">
+                        <img src="{{ asset('assets/img/avatar/avatar-3.png') }}" class="rounded-circle mr-1" width="100px" height="100px">
+                      </a>
                     @endif
                   </td>
                   <td>{{ $u->nama_user }}</td>

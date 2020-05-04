@@ -69,7 +69,9 @@
                 @if($user->foto == NULL)
                   <img id="imageResult" src="#" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
                 @else
-                  <img id="imageResult" src="{{url('uploads/user/'.$user->foto)}}" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                  <a href="{{url('uploads/user/'.$user->foto)}}" class="zoom">
+                    <img id="imageResult" src="{{url('uploads/user/'.$user->foto)}}" alt="" width="300px" height="300px" class="img-fluid rounded shadow-sm mx-auto d-block">
+                  </a>
                 @endif
               </div>
               <div class="form-group">

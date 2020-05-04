@@ -53,9 +53,13 @@
                   <td align="center">{{ $barang->firstItem() + $key }}</td>
                   <td style="padding-top: 10px; padding-bottom: 10px;" align="center">
                     @if($b->foto == !NULL)
-                      <img src="{{url('uploads/barang/'.$b->foto)}}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                      <a href="{{url('uploads/barang/'.$b->foto)}}" class="zoom">
+                        <img src="{{url('uploads/barang/'.$b->foto)}}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                      </a>
                     @else
-                      <img src="{{ asset('assets/img/avatar/barang.png') }}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                      <a href="{{ asset('assets/img/avatar/barang.png') }}" class="zoom">
+                        <img src="{{ asset('assets/img/avatar/barang.png') }}" class="img-fluid rounded shadow-sm mx-auto d-block" width="100px" height="100px">
+                      </a>
                     @endif
                   </td>
                   <td align="center">{{ $b->ruangan->nama_ruangan }}</td>
