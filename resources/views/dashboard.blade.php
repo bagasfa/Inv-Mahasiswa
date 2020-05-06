@@ -109,14 +109,15 @@
         <div class="card-header">
           <i id="micon2" class="fa fa-tasks" aria-hidden="true"></i>
           <div class="ml-auto table-responsive">
-            <h4>History Tambah Data</h4>
+            <h4>History Tambah Data Barang</h4>
             <div class="collapse" id="collapseAdd">
               <div class="card card-body">
                 <table class="table table-borderless table-hover">
                   <thead>
                     <tr align="center">
                       <th width="5%" scope="col"><center>#</center></th>
-                      <th>Nama Barang</th>
+                      <th scope="col">Nama Barang</th>
+                      <th scope="col">Di Ruangan</th>
                       <th scope="col">Total Barang</th>
                       <th scope="col">Dibuat</th>
                       <th scope="col">Tanggal</th>
@@ -127,6 +128,7 @@
                     <tr>
                       <td align="center">{{ $no +1 }}</td>
                       <td>{{ $ha->nama_barang }}</td>
+                      <td align="center">{{$ha->ruangan->nama_ruangan}}</td>
                       <td align="center">{{ $ha->total }}</td>
                       <td align="center">@foreach($user as $u)
                             @if($u->id == $ha->created_by)
@@ -156,7 +158,7 @@
         <div class="card-header">
           <i id="micon2" class="fa fa-tasks" aria-hidden="true"></i>
           <div class="ml-auto table-responsive">
-            <h4>History Edit Data</h4>
+            <h4>History Edit Data Barang</h4>
             <div class="collapse" id="collapseEdit">
               <div class="card card-body">
                 <table class="table table-borderless table-hover">
@@ -164,9 +166,10 @@
                     <tr align="center">
                       <th width="5%" scope="col"><center>#</center></th>
                       <th>Nama Barang</th>
+                      <th scope="col">Di Ruangan</th>
                       <th scope="col">Total Barang</th>
                       <th scope="col">Barang Rusak</th>
-                      <th scope="col">Diedit</th>
+                      <th scope="col">Diupdate</th>
                       <th scope="col">Tanggal</th>
                     </tr>
                   </thead>
@@ -175,6 +178,7 @@
                     <tr>
                       <td align="center">{{ $no +1 }}</td>
                       <td>{{ $he->nama_barang }}</td>
+                      <td align="center">{{$he->ruangan->nama_ruangan}}</td>
                       <td align="center">{{ $he->total }}</td>
                       <td align="center">{{ $he->broken }}</td>
                       <td align="center">@foreach($user as $u)
