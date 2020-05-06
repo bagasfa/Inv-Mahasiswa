@@ -30,7 +30,7 @@
                 <label>Nama Fakultas</label>
                 <input type="text" name="nama_fakultas" class="form-control" value="{{ $fakultas->nama_fakultas }}">
               </div>
-              <div class="form-group">
+              <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">SIMPAN</button>
               </div>
               </form>

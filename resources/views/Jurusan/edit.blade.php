@@ -37,7 +37,7 @@
                 <label>Nama Jurusan</label>
                 <input type="text" name="nama_jurusan" class="form-control" value="{{ $jurusan->nama_jurusan }}">
               </div>
-              <div class="form-group">
+              <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">SIMPAN</button>
               </div>
               </form>
