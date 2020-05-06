@@ -62,7 +62,7 @@ class FakultasController extends Controller
         ]);
 
         $file = $request->file('file');
-        $filename = rand().$file->getClientOriginalName();
+        $filename = date('dmYhis').'-'.$file->getClientOriginalName();
         $file->move('uploads/Fakultas',$filename);
         Excel::import(new FakultasImport, public_path('/uploads/Fakultas/'.$filename));
 
