@@ -9,6 +9,8 @@
   
   <div class="section-header">
     <h1>Dashboard</h1>
+
+    <div id="clock"></div>
   </div>
 
   @if(auth()->user()->role == "admin")
@@ -260,11 +262,6 @@
     </div>
   </marquee>
   @endif
-
-  @if(auth()->user()->role == "admin")
-    <div id="clock" align="center"></div>
-  @else
-    <div id="clock" style="margin-top: 7%;" align="center"></div>
-	@endif
+  
 </section>
 @endsection()

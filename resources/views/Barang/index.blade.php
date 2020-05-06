@@ -72,11 +72,16 @@
                         @endif
                       @endforeach
                   </td>
-                  <td>@foreach($user as $u)
+                  <td>
+                    @if($b->updated_by == !NULL)
+                      @foreach($user as $u)
                         @if($u->id == $b->updated_by)
                           {{ $u->nama_user }}
                         @endif
                       @endforeach
+                    @else
+                      ---
+                    @endif
                   </td>
                   <td align="center">
                     <a href="{{url('barang/'.$b->id. '/edit')}}">
@@ -124,6 +129,7 @@
         <div class="form-group">
             <label for="inputJurusan">Ruangan <i style="color: red;">*</i></label><br>
             <select name="id_ruangan" class="form-control" required="">
+              <option value="" hidden="">-- Pilih Ruangan --</option>
               @foreach($ruangan as $r)
               <option value="{{$r->id}}">{{$r->nama_ruangan}}</option>
               @endforeach

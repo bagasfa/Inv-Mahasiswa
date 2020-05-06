@@ -113,13 +113,15 @@
             <label for="inputPassword">Password <i style="color: red;">*</i></label>
             <div class="input-group" id="show_hide_password">
               <input name="password" type="password" minlength="8" class="form-control" id="inputPassword" placeholder="Password" required="">
-            <a href=""><div class="input-group-addon eye">
-              <i class="fa fa-eye-slash" aria-hidden="true"></i>
-            </div></a>
+              <a href=""><div class="input-group-addon eye">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+              </div></a>
+            </div>
         </div>
         <div class="form-group">
             <label for="inputRole">Role <i style="color: red;">*</i></label>
             <select class="form-control" name="role" required="">
+                <option value="" hidden="">-- Pilih Role --</option>
                 <option value="admin">Admin</option>
                 <option value="staff">Staff</option>
             </select>

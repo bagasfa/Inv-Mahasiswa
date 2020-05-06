@@ -88,6 +88,7 @@
         <div class="form-group">
             <label for="inputJurusan">Nama Jurusan <i style="color: red;">*</i></label><br>
             <select name="id_jurusan" class="form-control" required="">
+              <option value="" hidden="">-- Pilih Ruangan --</option>
               @foreach($jurusan as $j)
               <option value="{{$j->id}}">{{$j->nama_jurusan}}</option>
               @endforeach
