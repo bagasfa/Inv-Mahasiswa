@@ -68,14 +68,15 @@
             <div class="pull-right">{{ $data->links() }}</div>
           </div>
           <div class="card-footer text-right">
-            <nav class="d-inline-block">
-              
+            <nav class="d-inline-block">    
             </nav>
           </div>
         </div>
     </div>
+  </div>
+</section>
 
-    <!-- Modal -->
+<!-- Modal -->
     <div class="modal hide fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="addData" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content"> 
@@ -130,6 +131,4 @@
     </div>
     <!-- Modal Import -->
 
-  </div>
-</section>
 @endsection()
