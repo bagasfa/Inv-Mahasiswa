@@ -37,8 +37,8 @@
             <table class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <th scope="col" width="100px"><center>#</center></th>
-                  <th scope="col">Nama Fakultas</th>
+                  <th scope="col" width="100px"><center>@sortablelink('id','#')</center></th>
+                  <th scope="col">@sortablelink('nama_fakultas','Nama Fakultas')</th>
                   <th scope="col"><center>Aksi</center></th>
                 </tr>
               </thead>
@@ -68,7 +68,7 @@
                 @endforelse
               </tbody>
             </table>
-            <div class="pull-right">{{ $data->links() }}</div>
+            <div class="pull-right">{!! $data->appends(request()->except('page'))->render() !!}</div>
           </div>
           <div class="card-footer text-right">
             <nav class="d-inline-block">    

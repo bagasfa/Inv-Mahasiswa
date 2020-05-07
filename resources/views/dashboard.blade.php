@@ -104,6 +104,7 @@
     </div>
   </div></marquee>
   <!-- Collapse -->
+  <marquee direction="up" scrollamount="50" behavior="slide">
     <a class="nounderline" data-toggle="collapse" href="#collapseAdd" role="button" aria-expanded="false" aria-controls="collapseAdd">
       <div class="card card-primary">
         <div class="card-header">
@@ -136,7 +137,7 @@
                             @endif
                           @endforeach
                       </td>
-                      <td align="center">{{ $ha->created_at }}</td>
+                      <td align="center">{{ $ha->created_at->diffForHumans() }}</td>
                     </tr>
                     @empty
                     <tr>
@@ -151,8 +152,10 @@
         </div>
       </div>
       </a>
+    </marquee>
 <!-- Collapse -->
 <!-- Collapse -->
+  <marquee direction="up" scrollamount="50" behavior="slide">
     <a class="nounderline" data-toggle="collapse" href="#collapseEdit" role="button" aria-expanded="false" aria-controls="collapseEdit">
       <div class="card card-primary">
         <div class="card-header">
@@ -187,7 +190,7 @@
                             @endif
                           @endforeach
                       </td>
-                      <td align="center">{{ $he->updated_at }}</td>
+                      <td align="center">{{ $he->updated_at->diffForHumans() }}</td>
                     </tr>
                     @empty
                     <tr>
@@ -202,6 +205,7 @@
         </div>
       </div>
       </a>
+    </marquee>
 <!-- Collapse -->
 
   @elseif(auth()->user()->role == "staff")
@@ -265,6 +269,60 @@
       </div>
     </div>
   </marquee>
+
+  <!-- Collapse -->
+  <marquee direction="up" scrollamount="50" behavior="slide">
+    <a class="nounderline" data-toggle="collapse" href="#collapseEdit" role="button" aria-expanded="false" aria-controls="collapseEdit">
+      <div class="card card-primary">
+        <div class="card-header">
+          <i id="micon2" class="fa fa-tasks" aria-hidden="true"></i>
+          <div class="ml-auto table-responsive">
+            <h4>History Edit Data Barang</h4>
+            <div class="collapse" id="collapseEdit">
+              <div class="card card-body">
+                <table class="table table-borderless table-hover">
+                  <thead>
+                    <tr align="center">
+                      <th width="5%" scope="col"><center>#</center></th>
+                      <th>Nama Barang</th>
+                      <th scope="col">Di Ruangan</th>
+                      <th scope="col">Total Barang</th>
+                      <th scope="col">Barang Rusak</th>
+                      <th scope="col">Diupdate</th>
+                      <th scope="col">Waktu</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @forelse($his_edit as $no => $he)
+                    <tr>
+                      <td align="center">{{ $no +1 }}</td>
+                      <td>{{ $he->nama_barang }}</td>
+                      <td align="center">{{$he->ruangan->nama_ruangan}}</td>
+                      <td align="center">{{ $he->total }}</td>
+                      <td align="center">{{ $he->broken }}</td>
+                      <td align="center">@foreach($user as $u)
+                            @if($u->id == $he->updated_by)
+                              {{ $u->nama_user }}
+                            @endif
+                          @endforeach
+                      </td>
+                      <td align="center">{{ $he->updated_at->diffForHumans() }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                      <td colspan="8"><center>Tidak ada data terkini</center></td>
+                    </tr>
+                    @endforelse
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
+    </marquee>
+<!-- Collapse -->
   @endif
   
 </section>
