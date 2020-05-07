@@ -38,7 +38,7 @@ class AuthController extends Controller
         // Checking Email dan Password
     	if(Auth::attempt($request->only('email','password'))){
             // Jika Berhasil Login
-    		return redirect('/dashboard')->with('message', 'Welcome :)');
+    		return redirect('/dashboard')->with('message', 'Welcome, '.auth()->user()->nama_user);
     	}
     	// Email atau Password salah
     	return redirect('/login')->with('bye', 'Email atau Password anda Salah!');
