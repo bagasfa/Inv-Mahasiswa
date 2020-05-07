@@ -25,7 +25,10 @@
             </form>
           </div>
           <div class="card-header">
-            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah jurusan</button>
+            <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Jurusan</button>
+          </div>
+          <div class="counter">
+            <b>Total Jurusan</b> : {{$counter}}
           </div>
 
           <div class="card-body table-responsive">

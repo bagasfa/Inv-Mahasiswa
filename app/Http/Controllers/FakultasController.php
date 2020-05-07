@@ -15,8 +15,9 @@ class FakultasController extends Controller
     	$data = Fakultas::when($request->search, function($query) use($request){
             $query->where('nama_fakultas', 'LIKE', '%'.$request->search.'%');
         })->paginate(10);
+        $counter = Fakultas::count();
 
-        return view('Fakultas.index', compact('data'));
+        return view('Fakultas.index', compact('data','counter'));
     }
 
     // Tambah Data

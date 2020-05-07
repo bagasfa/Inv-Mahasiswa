@@ -29,6 +29,9 @@
             &nbsp;
             <button type="button" data-toggle="modal" data-target="#importData" class="btn btn-success"><i class="fas fa-file-import"></i> Import Fakultas</button>
           </div>
+          <div class="counter">
+            <b>Total Fakultas</b> : {{$counter}}
+          </div>
 
           <div class="card-body table-responsive">
             <table class="table table-bordered table-hover">

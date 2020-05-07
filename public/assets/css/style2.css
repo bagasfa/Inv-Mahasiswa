@@ -180,6 +180,12 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
     position: relative;
 }
 
+.counter{
+  margin-left: 2%;
+  margin-top: 1.5%;
+  font-size: 15px;
+}
+
 .bg-primary {
   background-color: #32364a !important; }
 

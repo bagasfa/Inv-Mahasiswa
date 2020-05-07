@@ -31,8 +31,9 @@ class JurusanController extends Controller
     public function index(Request $request){
     	$data = Jurusan::paginate(10);
         $fakultas = Fakultas::all();
+        $counter = Jurusan::count();
 
-        return view('Jurusan.index', compact('data','fakultas'));
+        return view('Jurusan.index', compact('data','fakultas','counter'));
     }
 
     // Tambah Data

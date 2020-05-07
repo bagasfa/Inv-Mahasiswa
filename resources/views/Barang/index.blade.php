@@ -32,6 +32,10 @@
             </a>
           </div>
           @endif
+          <div class="counter">
+            <b>Total Barang</b> : {{$counter}}
+          </div>
+
           <div class="card-body table-responsive">
             <table class="table table-bordered table-hover">
               <thead>

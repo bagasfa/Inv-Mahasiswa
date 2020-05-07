@@ -15,8 +15,9 @@ class RuanganController extends Controller
             $query->where('nama_ruangan', 'LIKE', '%'.$request->search.'%');
         })->paginate(10);
         $jurusan = Jurusan::all();
+        $counter = Ruangan::count();
 
-        return view('Ruangan.index', compact('ruangan', 'jurusan'));
+        return view('Ruangan.index', compact('ruangan', 'jurusan','counter'));
     }
 
     // Tambah Data

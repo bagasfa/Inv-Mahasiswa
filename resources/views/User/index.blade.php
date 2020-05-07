@@ -27,6 +27,9 @@
           <div class="card-header">
             <button type="button" data-toggle="modal" data-target="#addData" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah User</button>
           </div>
+          <div class="counter">
+            <b>Total User : </b> {{$counter}}
+          </div>
 
           <div class="card-body table-responsive">
             <table class="table table-bordered table-hover">

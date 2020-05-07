@@ -18,8 +18,9 @@ class BarangController extends Controller
         })->paginate(10);
         $ruangan = Ruangan::all();
         $user = User::all();
+        $counter = Barang::count();
 
-        return view('Barang.index', compact('ruangan', 'barang', 'user'));
+        return view('Barang.index', compact('ruangan', 'barang', 'user','counter'));
     }
 
     // Tambah Data

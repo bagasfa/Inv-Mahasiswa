@@ -12,8 +12,9 @@ class UserController extends Controller
     	$user = User::when($request->search, function($query) use($request){
             $query->where('nama_user', 'LIKE', '%'.$request->search.'%');
         })->paginate(10);
+        $counter = User::count();
 
-        return view('User.index', compact('user'));
+        return view('User.index', compact('user','counter'));
     }
 
     // Tambah Data
