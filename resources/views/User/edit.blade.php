@@ -29,7 +29,7 @@
               <div class="form-group">
                 <label for="inputNama">Nama Lengkap</label>
                 <input name="nama_user" type="text" class="form-control" id="inputNama" value="{{$user->nama_user}}" required="">
-                </div>
+              </div>
               <div class="form-group">
                   <label for="inputEmail">Email</label>
                   <input name="email" type="email" class="form-control" id="inputEmail" value="{{$user->email}}" required="">

@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/toastr.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/fancybox/jquery.fancybox.css') }}">
+  <link rel="stylesheet/less" type="text/css" href="{{ asset('assets/css/style.less') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
@@ -44,6 +45,12 @@
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item has-icon">
                 <i class="fas fa-envelope" style="padding-top: 1px;"></i> {{auth()->user()->email}}
+              </a>
+              <a href="{{url('/profile')}}" class="dropdown-item has-icon">
+                <i class="fas fa-user"></i> Profile
+              </a>
+              <a href="{{url('/changePassword')}}" class="dropdown-item has-icon">
+                <i class="fas fa-key"></i> Ganti Password
               </a>
               <div class="dropdown-divider"></div>
               <a href="{{url('/logout')}}" class="dropdown-item has-icon text-danger">
@@ -131,6 +138,24 @@
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+  <!-- Upload Profile Picture -->
+  <script type="text/javascript">
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+              $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+              $('#imagePreview').hide();
+              $('#imagePreview').fadeIn(650);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
+    });
+  </script>
 
   <!-- action Zooming gambar -->
   <script type="text/javascript">

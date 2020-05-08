@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\User;
 
@@ -48,5 +50,21 @@ class AuthController extends Controller
     public function logout(){
     	Auth::logout();
     	return redirect('/login')->with('bye', 'Goodbye :(');
+    }
+
+    public function changePassword(){
+        return view('User.editPassword');
+    }
+
+    public function updatePassword(Request $request){
+        $request->validate([
+            'oldPassword' => ['required', new MatchOldPassword],
+            'newPassword' => ['required'],
+            'confirmPassword' => ['same:newPassword'],
+        ]);
+
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->newPassword)]);
+
+        return redirect('/dashboard')->with('message','Password berhasil diperbarui !');
     }
 }

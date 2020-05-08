@@ -60,6 +60,14 @@ Route::group(['middleware' => ['auth','checkRole:admin,staff']], function(){
 	// Dashboard
 	Route::get('/dashboard','pagesController@dashboard');
 
+	// Profile
+	Route::get('/profile','UserController@profile');
+	Route::post('/profile/update','UserController@updateProfile');
+
+	// Ganti Password
+	Route::get('/changePassword','AuthController@changePassword');
+	Route::post('/updatePassword','AuthController@updatePassword');
+
 	// Barang
 	Route::get('/barang', 'BarangController@index');
 	Route::post('/barang/add', 'BarangController@add');

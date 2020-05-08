@@ -78,4 +78,29 @@ class UserController extends Controller
             return redirect('/user')->with('message', 'Data berhasil diubah!');
         }
     }
+
+    // Profile
+    public function profile(){
+        return view('User.editProfile');
+    }
+
+    public function updateProfile(Request $request){
+        $id = auth()->user()->id;
+        $user = User::findOrFail($id);
+        $validateData = $request->validate([
+            'email' => 'required|unique:user,email,'.$user->id,
+            'foto' => 'image|mimes:jpeg,png,jpg|max:8192'
+        ]);
+
+        $user->nama_user = $request->nama_user;
+        $user->email = $request->email;
+        if( $request->foto){
+            $upFoto = 'user-'.date('dmYhis').'.'.$request->foto->getClientOriginalExtension();
+            $request->foto->move('uploads/user', $upFoto);
+            $user->foto = $upFoto;
+        }
+        $user->save();
+
+        return redirect('/dashboard')->with('message','Profile Berhasil diubah !');
+    }
 }
