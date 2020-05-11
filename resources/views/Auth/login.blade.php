@@ -16,11 +16,8 @@
   <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-
-    <!-- =============================================== -->
-    <link rel="apple-touch-icon" type="text/css" href="images/apple-touch-icon.png">
-    
-    @laravelPWA
+ 
+  @laravelPWA
 </head>
 
 <!-- Main Body -->

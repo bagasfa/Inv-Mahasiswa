@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <h1>You are currently not connected to any networks.</h1>
+    <center><h1>Kamu Sedang Offline :)</h1></center>
 
 @endsection
