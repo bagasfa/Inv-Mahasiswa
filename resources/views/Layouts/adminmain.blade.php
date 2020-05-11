@@ -20,6 +20,11 @@
   <link rel="stylesheet/less" type="text/css" href="{{ asset('assets/css/style.less') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+
+  <!-- =============================================== -->
+  <link rel="apple-touch-icon" type="text/css" href="images/apple-touch-icon.png">
+  
+  @laravelPWA
 </head>
 
 <body>

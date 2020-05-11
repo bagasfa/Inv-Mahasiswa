@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/slicknav.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+    <!-- =============================================== -->
+    <link rel="apple-touch-icon" type="text/css" href="images/apple-touch-icon.png">
+
+    @laravelPWA
 </head>
 
 <body>
@@ -50,14 +55,14 @@
                                             <ul id="navigation">
                                                 <li><a data-scroll-nav='1' href="#">Home</a></li>
                                                 <li><a data-scroll-nav='2' href="#">Fakultas</a></li>
-                                                <li><a data-scroll-nav='3' href="#">Fasilitas Ruangan</a>
+                                                <li><a data-scroll-nav='3' href="#">Fasilitas Ruangan</a></li>
+                                                <li><a href="{{url('/login')}}">
+                                                    <button type="button" class="btn btn-primary">
+                                                        Masuk
+                                                    </button>
+                                                </a></li>
                                             </ul>
                                         </nav>
-                                    </div>
-                                    <div class="Appointment">
-                                        <div class="book_btn d-none d-lg-block">
-                                            <a href="{{url('/login')}}">Masuk</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
